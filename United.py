@@ -1,10 +1,12 @@
 print("Good morning! Please enter your information or scan your passport. Thank you.")
 
+passport = security()
+
 def info():
     choice = input("you can enter your identification through passport or your confirmation code. Please select one option.")
     if choice == "passport":
         identification()
-    if choice == "confirmation code":
+    elif choice == "confirmation code":
         identification2()
     else:
         print("you can enter your identification through passport or your confirmation code. Please select one option.")
@@ -14,7 +16,7 @@ def identication():
     choice = input("Please scan your passport by pressing the scan passport button and wait until the blue light turns on. If you want to go back to the info menu please press back.")
     if choice == "scan passport":
         security()
-    if choice == "go back":
+    elif choice == "go back":
         info()
             
 def security():
