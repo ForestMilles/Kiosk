@@ -24,4 +24,4 @@ Refelections
 Overall, I think that my first Round went ok, but there are definately things that need to be improved on. After entering passport or confirmation code it gives me a syntax error. I will try to fix this before the next round. There are no changes to the big picture. 
 
 Next Steps 
-By the next round I will like to have the age identifying code finished as well as most of the security. I also hope to have the user sent to the boarding pass menu. The user will be shown a flight number and destination and will need to verify its correct. 
+By the next round I will like to have the age identifying code finished as well as most of the security. I also hope to have the user sent to a future menu called the boarding pass menu. The user will be shown a flight number and destination and will need to verify its correct. 
