@@ -1,10 +1,8 @@
 print("Good morning! Please enter your information or scan your passport. Thank you.")
 
-passport = security()
-
 def info():
     choice = input("you can enter your identification through passport or your confirmation code. Please select one option.")
-    if choice == "passport":
+    if choice == "passport": 
         identification()
     elif choice == "confirmation code":
         identification2()
@@ -24,7 +22,7 @@ def security():
     if age == "<15":
         print("Please get a guardian")
         info()
-    elif age == "15≥":
+    elif age == "15>-":
         print("Please enter your full name")
     else:
         print("Please enter your age")
