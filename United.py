@@ -1,3 +1,21 @@
+import pygame
+from pygame.locals import *
+
+userface = [1024,768]
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode(userface)
+    while True:
+        for e in pygame.event.get():
+            if e.type == QUIT:
+                return
+
+if __name__ == '__main__':
+    main()
+
+pygame.quit()
+quit()
+
 def security():
     age = input("Please enter your age.")
     if age == "<15":
