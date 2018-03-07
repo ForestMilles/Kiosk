@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-userface = [1024,768]
+userface = [960,768]
 def main():
     pygame.init()
     screen = pygame.display.set_mode(userface)
