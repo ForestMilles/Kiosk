@@ -2,13 +2,25 @@ import pygame
 from pygame.locals import *
 
 bright_black = (255,50,0)
-bright_grey = (0,25,0)
+bright_grey = (100,100,100)
+grey = (200, 200, 200)
 
 display_width = 960
 display_height = 768
 
 Display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Checkin Here')
+
+def screenintro():
+    pygame.init()
+    display = pygame.display.set_mode((display_width, display_height))
+    while True:
+        for e in pygame.event.get():
+            if e.type == QUIT:
+
+                button("Begin Checkin", 150, 450, 100, 50, grey,  bright_grey, button())
+                button("Cancelt", 550, 450, 100, 50, black, bright_black, button())
+
 
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',115)
@@ -43,19 +55,7 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
-def screenintro():
-    pygame.init()
-    display = pygame.display.set_mode((display_width, display_height))
-    while True:
-        for e in pygame.event.get():
-            if e.type == QUIT:
-
-                button("Begin Checkin", 150, 450, 100, 50, grey,  bright_grey, button())
-                button("Cancelt", 550, 450, 100, 50, black, bright_black, button())
-
-if __name__ == '__main__':
-
-    screenintro()
+if __name__ == '__main__': screenintro()
 
 pygame.quit()
 quit()
@@ -71,7 +71,7 @@ def security():
         print("Please enter your full name")
     else:
         print("Please enter your age")
-        
+
 def identification():
     choice = input("Please scan your passport by pressing the scan passport button and wait until the blue light turns on. If you want to go back to the info menu please press back.")
     if choice == "scan passport":
@@ -96,14 +96,14 @@ def flight():
 def info():
     print("Good morning! Please enter your information or scan your passport. Thank you.")
     choice = input("you can enter your identification through passport or your confirmation code. Please select one option.")
-    if choice == "passport": 
+    if choice == "passport":
         identification()
     elif choice == "confirmation code":
         identification2()
     else:
         print("you can enter your identification through passport or your confirmation code. Please select one option.")
         info()
-            
+
 def security():
     age = input("Please enter your age.")
     if age == "<15":
@@ -113,5 +113,5 @@ def security():
         print("Please enter your full name")
     else:
         print("Please enter your age")
-               
+
 info()
