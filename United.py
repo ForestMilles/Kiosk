@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 
 bright_black = (255,50,0)
+black = (200,40,0)
 bright_grey = (100,100,100)
 grey = (200, 200, 200)
 
@@ -17,9 +18,10 @@ def screenintro():
     while True:
         for e in pygame.event.get():
             if e.type == QUIT:
-
-                button("Begin Checkin", 150, 450, 100, 50, grey,  bright_grey, button())
-                button("Cancelt", 550, 450, 100, 50, black, bright_black, button())
+                pygame.quit()
+                quit()
+        button("Begin Checkin", 150, 450, 100, 50, grey,  bright_grey, button())
+        button("Cancelt", 550, 450, 100, 50, black, bright_black, button())
 
 
 def message_display(text):
