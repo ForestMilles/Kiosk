@@ -3,8 +3,7 @@ from pygame.locals import *
 
 bright_black = (255,50,0)
 black = (200,40,0)
-bright_grey = (100,100,100)
-grey = (200, 200, 200)
+
 
 display_width = 960
 display_height = 768
@@ -13,6 +12,8 @@ Display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Checkin Here')
 
 def screenintro():
+    bright_grey = (100, 100, 100)
+    grey = (200, 200, 200)
     pygame.init()
     display = pygame.display.set_mode((display_width, display_height))
     while True:
@@ -20,8 +21,8 @@ def screenintro():
             if e.type == QUIT:
                 pygame.quit()
                 quit()
-        button("Begin Checkin", 150, 450, 100, 50, grey,  bright_grey, button())
-        button("Cancelt", 550, 450, 100, 50, black, bright_black, button())
+        button('Begin Checkin', 150, 450, 100, 50, grey,  bright_grey, button())
+        button('Cancel', 550, 450, 100, 50, black, bright_black, button())
 
 
 def message_display(text):
@@ -33,25 +34,25 @@ def message_display(text):
     pygame.display.update()
 
 
-def button(msg,x,y,w,h,ic,ac,action=None):
+def button(msg = 'hello',x = 0,y =0,w = 50,h =50,ic = 25,ac = 25,action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     print(click)
     if x + w > mouse[0] > x and y + h > mouse[1] > y:
-        pygame.draw.rect(display, ac, (x, y, w, h))
+        pygame.draw.rect(Display, ac, (x, y, w, h))
         if click[0] == 1 and action != None:
             action()
     else:
-        pygame.draw.rect(gameDisplay, ic, (x, y, w, h))
+        pygame.draw.rect(Display, ic, (x, y, w, h))
 
     smallText = pygame.font.Font("freesansbold.ttf", 20)
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ((x + (w / 2)), (y + (h / 2)))
-    display.blit(textSurf, textRect)
+    Display.blit(textSurf, textRect)
 
 
 def things(thingx, thingy, thingw, thingh, color):
-    pygame.draw.rect(gameDisplay, color, [thingx, thingy, thingw, thingh])
+    pygame.draw.rect(Display, color, [thingx, thingy, thingw, thingh])
 
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
