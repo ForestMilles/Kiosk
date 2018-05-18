@@ -1,48 +1,24 @@
 import pygame
+import sys
 from pygame.locals import *
-
-bright_black = (255,50,0)
-black = (200,40,0)
-
-bright_grey = (100, 100, 100)
-grey = (200, 200, 200)
-
-white = (255, 255, 255)
-
-display_width = 960
-display_height = 768
-
-gameDisplay = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption('Checkin Here')
-
-def screenintro():
-    bright_grey = (100, 100, 100)
-    grey = (200, 200, 200)
-    pygame.init()
+pygame.init()
 
 
-    while True:
-        for e in pygame.event.get():
-            if e.type == QUIT:
+black = (0, 30, 0)
+white = (0, 250, 0)
 
-                pygame.quit()
-                quit()
-    button('Begin Checkin', 150, 450, 100, 50, grey, bright_grey, button())
-    button('Cancel', 550, 450, 100, 50, black, bright_black, button())
-    pygame.display.update()
+background = pygame.image.load("plane.bmp")
+size = (width, height) = background.get_size()
 
 
-
-def message_display(text):
-    largeText = pygame.font.Font('freesansbold.ttf',115)
-    TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = ((display_width/2),(display_height/2))
-    gameDisplay.blit(TextSurf, TextRect)
-
-    pygame.display.update()
+screen = pygame.display.set_mode(size)
 
 
-def button(msg = 'hello',x = 0,y =0,w = 50,h =50,ic = 25,ac = 25,action=None):
+gameDisplay = pygame.display.set_mode((size))
+pygame.display.set_caption('Check in Here')
+
+#def button(msg = 'hello',x = 0,y =0,w = 50,h =50,ic = 25,ac = 25,action=None):
+def button(msg, x, y, w, h, ic, ac, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     print(click)
@@ -58,13 +34,42 @@ def button(msg = 'hello',x = 0,y =0,w = 50,h =50,ic = 25,ac = 25,action=None):
     textRect.center = ((x + (w / 2)), (y + (h / 2)))
     gameDisplay.blit(textSurf, textRect)
 
+def screenintro():
+    bright_grey = (255, 0, 0)
+    grey = (200, 200, 200)
+    bright_black = (0, 0, 255)
+    black = (200, 200, 200)
+    pygame.init()
+
+
+    while True:
+        for e in pygame.event.get():
+            if e.type == QUIT:
+
+                pygame.quit()
+                quit()
+        button('Check in', 150, 450, 100, 50, grey, bright_grey)
+        button('Cancel', 550, 450, 100, 50, black, bright_black)
+        pygame.display.update()
+
+
+def message_display(text):
+    largeText = pygame.font.Font('freesansbold.ttf',115)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((display_width/2),(display_height/2))
+    gameDisplay.blit(TextSurf, TextRect)
+
+    pygame.display.update()
+
 
 def things(thingx, thingy, thingw, thingh, color):
     pygame.draw.rect(gameDisplay, color, [thingx, thingy, thingw, thingh])
 
+
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
+
 
 if __name__ == '__main__': screenintro()
 
@@ -72,8 +77,7 @@ pygame.quit()
 quit()
 
 
-
-def security():
+"""def security():
     age = input("Please enter your age.")
     if age == "<15":
         print("Please get a guardian")
@@ -83,12 +87,15 @@ def security():
     else:
         print("Please enter your age")
 
+
 def identification():
-    choice = input("Please scan your passport by pressing the scan passport button and wait until the blue light turns on. If you want to go back to the info menu please press back.")
+    choice = input("Please scan your passport by pressing the scan passport button and wait until the blue light turns "
+                   "on. If you want to go back to the info menu please press back.")
     if choice == "scan passport":
         security()
     elif choice == "go back":
         info()
+
 
 def identification2():
     choice = input("Please enter you confirmation code on the keypad below or enter you first and last name" )
@@ -97,6 +104,7 @@ def identification2():
     elif choice == "name":
         name()
 
+
 def flight():
     choice = input("you are taking flight 971 to Reykjavik, correct?")
     if choice == "yes":
@@ -104,9 +112,11 @@ def flight():
     elif choice == "no":
         identification2()
 
+
 def info():
     print("Good morning! Please enter your information or scan your passport. Thank you.")
-    choice = input("you can enter your identification through passport or your confirmation code. Please select one option.")
+    choice = input("you can enter your identification through passport or your confirmation code. Please select one "
+                   "option.")
     if choice == "passport":
         identification()
     elif choice == "confirmation code":
@@ -114,6 +124,7 @@ def info():
     else:
         print("you can enter your identification through passport or your confirmation code. Please select one option.")
         info()
+
 
 def security():
     age = input("Please enter your age.")
@@ -123,7 +134,7 @@ def security():
     elif age == "15>-":
         print("Please enter your full name")
     else:
-        print("Please enter your age")
+        print("Please enter your age")"""
 
 screenintro()
 info()
