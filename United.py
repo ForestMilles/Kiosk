@@ -11,10 +11,10 @@ background = pygame.image.load("plane.bmp")
 size = (width, height) = background.get_size()
 
 
-screen = pygame.display.set_mode(size)
 
 
-gameDisplay = pygame.display.set_mode((size))
+
+gameDisplay = pygame.display.set_mode(size)
 pygame.display.set_caption('Check in Here')
 
 #def button(msg = 'hello',x = 0,y =0,w = 50,h =50,ic = 25,ac = 25,action=None):
@@ -48,6 +48,7 @@ def screenintro():
 
                 pygame.quit()
                 quit()
+        gameDisplay.blit(background,(0,0))
         button('Check in', 150, 450, 100, 50, grey, bright_grey)
         button('Cancel', 550, 450, 100, 50, black, bright_black)
         pygame.display.update()
