@@ -12,19 +12,62 @@ size = (width, height) = background.get_size()
 
 background2 = pygame.image.load("plane2.bmp")
 
+background3 = pygame.image.load("plane3.bmp")
+
 gameDisplay = pygame.display.set_mode(size)
 pygame.display.set_caption('Check in Here')
 
 
-
-def checkin():
+def passport(msg, x, y, w, h, ic, ac, action=None):
     bright_grey = (255, 0, 0)
     grey = (200, 200, 200)
     bright_black = (0, 0, 255)
     black = (200, 200, 200)
 
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+    print(click)
+    if x + w > mouse[0] > x and y + h > mouse[1] > y:
+        pygame.draw.rect(gameDisplay, ac, (x, y, w, h))
+        if click[0] == 1:
+            if msg == "Enter number":
+                passport(msg, x, y, w, h, ic, ac, action=None)
+            if msg == "Scan":
+                Scan()
+    else:
+        pygame.draw.rect(gameDisplay, ic, (x, y, w, h))
 
     while True:
+        for e in pygame.event.get():
+            if e.type == QUIT:
+                pygame.quit()
+                quit()
+        gameDisplay.blit(background3, (0, 0))
+        button('Enter number', 150, 450, 100, 50, grey, bright_grey)
+        button('Scan', 550, 450, 100, 50, black, bright_black)
+        pygame.display.update()
+
+
+def checkin(msg, x, y, w, h, ic, ac, action=None):
+    bright_grey = (255, 0, 0)
+    grey = (200, 200, 200)
+    bright_black = (0, 0, 255)
+    black = (200, 200, 200)
+    state = "checkin"
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+    print(click)
+    if x + w > mouse[0] > x and y + h > mouse[1] > y:
+        pygame.draw.rect(gameDisplay, ac, (x, y, w, h))
+        if click[0] == 1:
+            if msg == "Passport":
+                passport(msg, x, y, w, h, ic, ac, action=None)
+            if msg == "Confirmation number":
+                confirmation()
+    else:
+        pygame.draw.rect(gameDisplay, ic, (x, y, w, h))
+
+    while state == "checkin":
         for e in pygame.event.get():
             if e.type == QUIT:
                 pygame.quit()
@@ -44,8 +87,10 @@ def button(msg, x, y, w, h, ic, ac, action=None):
         pygame.draw.rect(gameDisplay, ac, (x, y, w, h))
         if click[0] == 1 :
             if msg == "Check in":
-                checkin()
-            if msg == "Cancel":
+                checkin(msg, x, y, w, h, ic, ac, action=None)
+            elif msg == "Passport":
+                passport(msg, x, y, w, h, ic, ac, action=None)
+            elif msg == "Cancel":
                 pygame.quit()
                 quit()
     else:
@@ -55,7 +100,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ((x + (w / 2)), (y + (h / 2)))
     gameDisplay.blit(textSurf, textRect)
-
+state = "intro"
 def screenintro():
     bright_grey = (255, 0, 0)
     grey = (200, 200, 200)
@@ -63,8 +108,7 @@ def screenintro():
     black = (200, 200, 200)
     pygame.init()
 
-
-    while True:
+    while state == "intro":
         for e in pygame.event.get():
             if e.type == QUIT:
 
@@ -73,6 +117,7 @@ def screenintro():
         gameDisplay.blit(background,(0,0))
         button('Check in', 150, 450, 100, 50, grey, bright_grey)
         button('Cancel', 550, 450, 100, 50, black, bright_black)
+
         pygame.display.update()
 
 
@@ -160,4 +205,3 @@ def security():
         print("Please enter your age")"""
 
 screenintro()
-info()
